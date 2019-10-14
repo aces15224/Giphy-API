@@ -1,0 +1,119 @@
+body{
+    background-image: url("./mov.jpg");
+    background-attachment: fixed;
+    
+}
+#button-list{
+    position: fixed;
+    top: 0;
+    left: 5px;
+    max-width: 1145px;
+    width:100%;
+    height:auto;
+    margin-bottom: 5px;
+   
+    
+}
+
+button{
+    background-color:gold;
+    padding:10px;
+    margin: 10px 3px;
+    border-radius: 5px;
+}
+
+#submit-search{
+    background-color:gold; 
+    border-radius: 5px;
+}
+
+h3{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+form{
+    position: fixed;
+    top:0;
+    right: 5px;
+    color:gold;
+  
+   
+
+}
+
+#container{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    width:auto;
+    height:auto;
+    min-height: 60px;
+    margin-bottom:5px;
+    background-color:red;
+    z-index: 1;
+
+}
+
+#search-area{
+    margin-top: 70px;
+    height: auto;
+    
+
+}
+
+.image-results{
+    float:left;
+    padding:10px;
+    margin-bottom: 15px;
+}
+p{
+    float:left;
+    color:white;
+    font-weight: 800;
+    /* background-color:blue; */
+    position: relative;
+    top:0;
+    left: -200px;
+    width:auto;
+    padding:0;
+    margin:0;
+}
+
+
+img{
+    /* background-color: red; */
+    width: 300px;
+    height: 200px;
+    margin-top: 15px;
+   
+    
+}
+
+#title{
+    transform: rotate(90deg);
+    padding-top:0; 
+    margin-right:0;
+    color: grey;
+    font-size: 2.2em;
+    font-family: 'Anton', sans-serif;
+    text-align:center;
+    letter-spacing: 8px;
+    display:block;
+    position: fixed;
+    top: 212px;
+    right:-110px;
+    animation-name: movieGif;
+    animation-duration: 4s;
+}
+
+@keyframes movieGif {
+    from {color: black;}
+    to {color: grey;}
+  }
+
+h1{
+    margin-top:0;
+    padding-top:0;
+}

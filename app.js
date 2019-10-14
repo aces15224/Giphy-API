@@ -1,34 +1,48 @@
-var topics=["Casablanca", "Goodfellas", "Robocop", "Pulp Fiction", "Yojimbo", "Jaws", "Anchorman", "Iron Man"];
+var topics=["Casablanca", "Goodfellas", "Robocop", "Pulp Fiction", "Yojimbo", "Jaws", "Anchorman", "Iron Man", "Jerry Maguire"];
 
 function getGifs(){
 var movie = $(this).attr("data-topic");
-var queryURL="https://api.giphy.com/v1/gifs/search?q=" + movie + "&api_key=46WkN1Y8Ib1XwBHDH74OfJfeUYg3AH5e&rating&limit=12";
+var queryURL="https://api.giphy.com/v1/gifs/search?q=" + movie + "&api_key=46WkN1Y8Ib1XwBHDH74OfJfeUYg3AH5e&rating&limit=10";
 
-// API KEY:  46WkN1Y8Ib1XwBHDH74OfJfeUYg3AH5e
 $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(response){
-      console.log(response.data);
-      console.log(response.data.rating)
+    $("#search-area").empty()
       var responseData=response.data
       for(let i=0; i<responseData.length; i++){
-          console.log(responseData[i])
-          console.log(responseData[i].rating)
-    //   var responseRating=responseData[i]
-    //   var par=$("<p>")
-    //   par.text(responseData)
-      
-    //   $("#search-area").append(par)    
-      }
-      
-      
-
-
-
-  })
+      var gifDiv = $("<div>");
+      var responseRating=responseData[i].rating
+      var par=$("<p>")
+      par.text("Rating: " + responseRating)
+      var images=$("<img>")
+      var still=responseData[i].images.fixed_height_still.url
+      var animated=responseData[i].images.fixed_height.url
+      images.attr("src", still)
+      images.attr("data-still", still)
+      images.attr("data-animated", animated)
+      images.attr("data-state", 'still')
+      images.addClass("image-results")
+      gifDiv.append(images)
+      gifDiv.append(par)
+      $("#search-area").append(gifDiv) 
+}
+})
 
 }
+
+$(document).on("click", ".image-results", function(){
+  var state= $(this).attr('data-state');
+  if(state =='still'){
+    $(this).attr("src", $(this).data('animated'));
+    $(this).attr('data-state', 'animated');
+  }
+  else{
+    $(this).attr("src", $(this).data('still'));
+    $(this).attr('data-state', 'still')
+  }
+
+})
 
 
 
@@ -36,7 +50,6 @@ $.ajax({
 
 function addTopicButton(){
 for(let i=0; i<topics.length; i++){
-    
     var addButton=$("<button>")
     addButton.text(topics[i])
     addButton.addClass("movie-buttons")
@@ -47,13 +60,18 @@ for(let i=0; i<topics.length; i++){
 
 $("#submit-search").on("click", function(event){
     $("#button-list").empty()
-   
-    alert("yes")
     event.preventDefault();
-
     var newAdd=$("#add-movie").val().trim()
-    topics.push(newAdd);
-    console.log(topics)
+    if (topics.length>=11){
+      topics.shift()
+      topics.push(newAdd);
+    }
+    else{
+    topics.push(newAdd);  
+    }
+    
+    $("#add-movie").val("")
+    
 addTopicButton();
 });
 
