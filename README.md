@@ -12,3 +12,8 @@
    * When the user clicks a button or submits a search, the page will display 10 GIFS for their amusement.  
 
    * Each time a new search is made, the previous selection will be removed, and the latest search results will be displayed.  
+
+
+Live Demo:
+
+https://aces15224.github.io/Giphy-API/
